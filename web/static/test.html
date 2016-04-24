@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<title>Oh Hell Games</title>
+
+<link href='/static/style.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<h1>Oh Hell Games</h1>
+
+<main>
+<section class="games">
+<div id="first" onclick="func(this)">First</div>
+<div id="second" onclick="func(this)">Second</div>
+</section>
+</main>
+
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+
+function openGame( event ) {
+    console.log(event.originalEvent);
+    var item = event.originalEvent.toElement;
+    console.log(item);
+    var id = $(item).attr('id');
+    if ( $(item).has('div').length ) {
+        console.log("toogle() for  " + id);
+        $(item).has('div').toggle();
+    } else {
+        console.log("Getting json for " + id);
+        $.getJSON( requestURL + '/' + id.substring(4), function(game) {
+            var players = game.players;
+            $(item).append("<div>" + id + "</div>");
+        });
+    }
+}
+
+var main = function () {
+    "use strict";
+//        [ 'test1', 'test2'].forEach(function (item) {
+//            $(".games").append( '<div id="game' + item + '" onclick="func(this)">' + item + '</div>');
+//            $("#game" + item).click( func);
+//        });
+//    $('.games').append( '<div id="third" onclick="func(this)">third</div>')
+//    $('.games').append( '<div id="fourth" onclick="func(this)">fourth</div>')
+};
+
+function func( item) {
+  console.log("clicked: " + $(item).attr('id'));
+  //$(item).append("<div>" + $(item).attr('id') + 'x</div>');
+  var id = $(item).attr('id');
+    if ( $(item).has('div').length ) {
+        console.log("toogle() for  " + id);
+        $('#sub' + id).toggle();
+    } else {
+        console.log("Adding div for " + id);
+       $(item).append('<div id="sub' + id +  '">' + id + "</div>");
+    }
+}
+
+$(document).ready(main);
+
+</script>
+
+</body>
+</html>
