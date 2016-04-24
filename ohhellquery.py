@@ -26,8 +26,9 @@ def get_deals( db, game_id ):
                                               'WHERE game_id = ' + str(game_id))
   num_players = len(game_players)
   player_list = num_players*[0]
-  for i in range(num_players):
-    gp = game_players[(game_id,i+1)]
+  player_ids = [ p[1] for p in game_players.keys()]
+  for i in player_ids:
+    gp = game_players[(game_id,i)]
     player_list[gp.game_order-1] = players[ gp.player_id]
     
   deals = []

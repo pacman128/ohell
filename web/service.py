@@ -4,7 +4,7 @@ from bottle import Bottle, run, template, route, static_file
 import time
 import sys
 import json
-sys.path.append('/home/pcarter/projects/trunk/oh-hell')
+sys.path.append('..')
 import _mysql
 from MySQLdb.constants import FIELD_TYPE
 import card
